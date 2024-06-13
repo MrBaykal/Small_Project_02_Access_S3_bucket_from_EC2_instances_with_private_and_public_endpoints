@@ -4,7 +4,7 @@ resource "aws_vpc" "main" {
     enable_dns_support = true
 
     tags = merge(
-        local.comman_tags,
+        local.common_tags,
         tomap({ "Name" = "${local.prefix}-vpc" })
     )
   
@@ -17,7 +17,7 @@ resource "aws_subnet" "public" {
     availability_zone = "${data.aws_region.current.name}a"
 
     tags = merge(
-        local.comman_tags,
+        local.common_tags,
         tomap({ "Name" = "${local.prefix}-private" })
         )
 }
@@ -28,7 +28,7 @@ resource "aws_subnet" "private" {
     availability_zone = "${data.aws_region.current.name}a"  
 
     tags = merge(
-        local.comman_tags,
+        local.common_tags,
         tomap({ "Name" = "${local.prefix}-private" })
         )
 }
@@ -38,7 +38,7 @@ resource "aws_internet_gateway" "main" {
     vpc_id = aws_vpc.main.id
 
     tags = merge(
-        local.comman_tags,
+        local.common_tags,
         tomap({ "Name" = "${local.prefix}-main" })
     )
   
@@ -47,7 +47,7 @@ resource "aws_internet_gateway" "main" {
 # Elastic IP wil be used by NAT gateway
 resource "aws_eip" "public" {
     tags = merge(
-        local.comman_tags,
+        local.common_tags,
         tomap({ "Name" = "${local.prefix}-public" })
     )
   
@@ -59,7 +59,7 @@ resource "aws_nat_gateway" "public" {
   subnet_id = aws_subnet.public.id
   
   tags = merge(
-    local.comman_tags,
+    local.common_tags,
     tomap({ "Name" = "${local.prefix}-public" })
   )
 
@@ -71,7 +71,7 @@ resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(
-    local.comman_tags,
+    local.common_tags,
     tomap({ "Name" = "${local.prefix}-public" })
   )
 }
@@ -80,7 +80,7 @@ resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(
-    local.comman_tags,
+    local.common_tags,
     tomap({ "Name" = "${local.prefix}-private" })
   )
 }
