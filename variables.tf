@@ -9,11 +9,11 @@ variable "prefix" {
 }
 
 variable "project" {
-  default = "devops-102"
+  default = "Small-Project-devops-102"
 }
 
 variable "contact" {
-  default = "akhileshmishra@gmail.com"
+  default = "ebaykal2266@gmail.com"
 }
 
 variable "vpc_cidr" {
