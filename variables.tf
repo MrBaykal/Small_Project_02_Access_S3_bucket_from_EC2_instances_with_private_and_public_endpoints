@@ -34,3 +34,7 @@ variable "keyPath" {
   type    = string
   default = ""
 }
+
+variable "" {
+  
+}
