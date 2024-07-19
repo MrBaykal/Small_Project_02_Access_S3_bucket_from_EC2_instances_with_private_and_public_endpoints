@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "s3" {
-    bucket = "${data.aws_caller_identity.current.account_id}-bastion-bucket"
+    bucket = "emre-bastion-bucket-1"
 
     tags = merge(
         local.common_tags,
@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "s3" {
 resource "aws_s3_bucket_versioning" "bucket_versioning" {
     bucket = aws_s3_bucket.s3.id
     versioning_configuration {
-      status = "Enable"
+      status = "Enabled"
     }
 }
 
