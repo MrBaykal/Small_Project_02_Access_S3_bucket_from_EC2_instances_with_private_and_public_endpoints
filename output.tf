@@ -4,7 +4,7 @@ output "ec2_public_ip" {
   value       = aws_instance.bastion.public_ip
 }
 
-output "s2-bucket-name" {
+output "s3-bucket-name" {
   value = aws_s3_bucket.s3.id
 
 }
